@@ -2,10 +2,10 @@
 /**
     *File name: delete.blade.
     *File type: php.
-    *Date of  creation:10th May 2016.
+    *Date of  creation:20th Feb 2017.
     *Author:mindfire solutions.
     *Purpose: this php file  get id and delete the student record.
-    *Path:D:\Projects\hello-world\filemaker\blog\resources\veiws\filemaker.
+    *Path:D:\PHP Projects\blog and comments\blog1\resources\veiws\pages.
     **/
 ?>
 @extends('layouts.master')
@@ -20,10 +20,8 @@
         
         <div class="panel">
             <div class="panel-heading">
-                <div class="jumbotron">
-                    <h1>Delete this</h1>
-                </div >
-            </div>
+                                   <h1>Delete this</h1>
+                            </div>
                 
             <div class="panel-body">
             <form class="myform" id="myform" action="{{ url('/delete/blog') }}" method="POST">
@@ -33,7 +31,7 @@
                          @if ($errors->any())
                         {{ implode('', $errors->all('<div>:message</div>')) }}
                         @endif
-                        <input type="Hidden" name="id" id="id" value="{{$record->getField('AuthorId')}}"/>
+                        <input type="Hidden" name="id" id="id" value="{{$record->getField('BlogId')}}"/>
 
                         <div class="error">{{ $errors->first('id') }}</div>
                         <h3 class="alert alert-error">Are you sure to delete you want to delete this Blog ?</h3>

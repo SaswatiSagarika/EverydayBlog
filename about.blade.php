@@ -1,4 +1,13 @@
-
+<?php
+/**
+    *File name: about.blade.
+    *File type: php.
+    *Date of  creation:20th Feb 2017.
+    *Author:mindfire solutions(saswati).
+    *Purpose: this file show the details about the author of the blog.
+    *Path:D:\PHP Projects\blog and comments\blog1\resources\veiws\.
+    **/
+?>
 @extends('layouts.master')
 @section('title')
 	About Us

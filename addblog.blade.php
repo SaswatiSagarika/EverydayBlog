@@ -1,3 +1,13 @@
+<?php
+/**
+    *File name: addblog.blade.
+    *File type: php.
+    *Date of  creation:20th Feb 2017.
+    *Author:mindfire solutions(saswati).
+    *Purpose: this php file shows the form page where one can add new blog.
+    *Path:D:\PHP Projects\blog and comments\blog1\resources\veiws\layouts.
+    **/
+?>
 @extends('layouts.master')
 
 @section('content')
@@ -86,9 +96,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>Add New Post
                                 </button>
-                                <button  class="btn btn-danger" href="#">
+                                <a class="btn btn-danger" href="{{ url('/list') }}">
                                     <i class="fa fa-btn fa-sign-out"></i>Cancel
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>

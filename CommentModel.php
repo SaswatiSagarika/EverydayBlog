@@ -1,4 +1,14 @@
-<?php namespace App;
+<?php
+/**
+    *File name: CommentModal.
+    *File type: php.
+    *Date of  creation:20th Feb 2017.
+    *Author:mindfire solutions.
+    *Purpose: this php file contains different functions to be called in controller file.
+    *Path:D:\PHP Projects\blog and comments\blog1\app.
+    **/
+
+namespace App;
 
 use App\FilemakerModel;
 use \FileMaker;
@@ -10,19 +20,17 @@ class CommentModel extends FilemakerModel {
 		parent::__construct();
 
 	}
-
-        function utf8_encode_deep(&$input) {
-            if (is_string($input))
-            {
-                $input = utf8_encode($input);
-            } else if (is_array($input)) {
-                foreach ($input as &$value)
-                {
-                    self::utf8_encode_deep($value);
-                }
-            }
-        }
         
+       /**
+	 *create new comment with respect to the BlogId
+	 *@param $id
+	 *@param $name
+	 *@param $email
+	 *@param conent
+	 *
+	 *@param $resultarray
+	 *@return response(json data).
+	 */
 	public function createnewcomments($id, $name, $email, $content)
 	{
 
@@ -32,7 +40,7 @@ class CommentModel extends FilemakerModel {
 				dd($this->db->getMessage());
 			}
 			$record = $this->db->newAddCommand('Comments');
-			$record -> setField('AuthorId', $id);
+			$record -> setField('BlogId', $id);
 			$record -> setField('CommenterName', $name);
 			$record -> setField('CommenterEmail', $email);
 			$record -> setField('CommenterMessage', $content);
@@ -44,7 +52,7 @@ class CommentModel extends FilemakerModel {
                        $results =$results->getRecords();
                 foreach ($results as $result) {
                     $resultsarray['CommentId'] = $result->getField('CommentId');
-                    $resultsarray['AuthorId'] = $result->getField('AuthorId');
+                    $resultsarray['BlogId'] = $result->getField('BlogId');
                     $resultsarray['CommenterName'] = $result->getField('CommenterName');
                     $resultsarray['CommenterEmail'] = $result->getField('CommenterEmail');
                     $resultsarray['CommenterMessage'] = $result->getField('CommenterMessage');
@@ -55,14 +63,27 @@ class CommentModel extends FilemakerModel {
 			{
 				dd($resultsarray->getMessage());
 			}
-		return $resultsarray;
+                        
+             
+                    return $resultsarray;
+               
+		
     
 	}
+        
+        /**
+        *  get the records details based on Id
+        *
+        * @param String $request - contain id variable .
+        * @Param $id -releted record is searched based on it
+        * 
+        * @return records.
+        */
          public function getcommentdetailsbyId($request)
         {
              
             $record = $this->db->newFindCommand('Comments');
-            $record->addFindCriterion('AuthorId', $request['id']);
+            $record->addFindCriterion('BlogId', $request['id']);
             $result = $record->execute();
             if(FileMaker::isError($result))
                 {

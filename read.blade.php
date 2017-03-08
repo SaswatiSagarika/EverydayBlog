@@ -1,3 +1,13 @@
+<?php
+/**
+    *File name: read.blade.
+    *File type: php.
+    *Date of  creation:24th Feb 2017.
+    *Author:mindfire solutions(saswati).
+    *Purpose: this php file show the blog i separate page where reader can add new comments andview the blog completly along with the comments.
+    *Path:D:\PHP Projects\blog and comments\blog1\resources\veiws\layouts.
+    **/
+?>
 @extends('layouts.master')
 @section('title')
     Read
@@ -5,26 +15,25 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @section('content')
 <div class="container">
-
     <div class="row">
         @foreach($records as $record)
         <div class="col-md-12 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="jumbotron">
-                
                         <h1>{{$record->getField('SubjectTitle')}}</h1>
                     </div>
                  </div>
                 
                 <div class="panel-body">
-                   <p hidden>{{$record->getField('AuthorId')}}</p>
+                   <p hidden><b><u>{{$record->getField('BlogId')}}</u></b></p>
                             <p>{{$record->getField('Subject')}}</p>
-                            <p><i> by </i> {{$record->getField('AuthorName')}} <i> on </i> {{$record->getField('Date')}}</p>
+                            <p><i> by </i> <b>{{$record->getField('AuthorName')}} </b><i> on </i> <b>{{$record->getField('Date')}}</b></p>
                             <button  class="btn btn-Primary" href="{{ url('/list') }}">
                                     <i class="fa fa-btn fa-sign-out"></i>Back
                             </button>
                 </div>
+                    
             </div>
         </div>
         @endforeach
@@ -53,7 +62,7 @@
                         <div>
                             <form class="myform" id="myform" action="" method="">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" class="form-control" name="id" id="id" value="{{$record->getField('AuthorId')}}">
+                                <input type="hidden" class="form-control" name="id" id="id" value="{{$record->getField('BlogId')}}">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Name</label>
          
@@ -115,24 +124,23 @@
             <div class="panel panel-info">
             <div class="panel-heading">
             </div>
-                
-             @if (!empty($data))
-                 
-
-                   <div class="panel-body" >
+                <div class="panel-body" >
                    <div class="comment-list" id="comment-list">
-                @foreach($comments as $comment)
-               
-             
-                    <p>{{$comment->getField('Blog_Comments__authorId::CommenterMessage')}}</p>
-                    <p><i> by </i> {{$comment->getField('Blog_Comments__authorId::CommenterName')}} <i> on </i> {{$comment->getField('Blog_Comments__authorId::CommentDate')}}  <i> at </i> {{$comment->getField('Blog_Comments__authorId::CommentTime')}}</p>
-                    <p>{{$comment->getField('Blog_Comments__authorId::CommenterEmail')}}</p> 
-                    <hr>
-                    
-                @endforeach
-            @else
+                  
+               @if ($comments == 0)
                     <p>No comments are available for this blog</p>
-                @endif
+                 @else       
+                 @foreach($comments as $comment)
+                    
+                        <p>{{$comment->getField('Blog_Comments__BlogId::CommenterMessage')}}</p>
+                    <p><i> by </i> {{$comment->getField('Blog_Comments__BlogId::CommenterName')}} <i> on </i> {{$comment->getField('Blog_Comments__BlogId::CommentDate')}}  <i> at </i> {{$comment->getField('Blog_Comments__BlogId::CommentTime')}}</p>
+                    <p>{{$comment->getField('Blog_Comments__BlogId::CommenterEmail')}}</p> 
+                    <hr> 
+                      
+                   @endforeach
+                    @endif
+                 
+                
                 </div>
                 </div>
             </div>    

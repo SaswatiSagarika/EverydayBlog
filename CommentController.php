@@ -1,4 +1,13 @@
-<?php namespace App\Http\Controllers;
+<?php
+/**
+    *File name: CommentController.
+    *File type: php.
+    *Date of  creation:10th May 2016.
+    *Author:mindfire solutions.
+    *Purpose: this php file contains different functions to be called in routes file.
+    *Path:D:\PHP Projects\blog and comments\blog1\app\HTTP\Controller.
+    **/
+namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,8 +22,13 @@ class CommentController extends Controller {
 
     
 	/**
-	 *create new comment with respect to the AuthorId
+	 *create new comment with respect to the BlogId
+	 *@param $id
+	 *@param $name
+	 *@param $email
+	 *@param conent
 	 *
+	 *@param $resultarray
 	 *@return response(json data).
 	 */
 	public function createcomments(Request $request)
@@ -27,9 +41,9 @@ class CommentController extends Controller {
             $name=$request->input('name');
             $email=$request->input('email');
             $content=$request->input('comment');
-            //dd($id,$name);
+            
             $resultsarray= $object->createnewcomments($id, $name, $email, $content);
-            //$object->utf8_encode_deep($resultsarray);
+            
             return response()->json($resultsarray);
             
 	}

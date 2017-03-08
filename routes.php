@@ -1,5 +1,10 @@
 <?php
-
+/**
+    *File name: routes.
+    *File type: php.
+    *Purpose: it has links that connects to different pages and functions. 
+    *Path:D:\PHP Projects\blog and comments\blog1\app\Http.
+    **/
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -42,7 +47,7 @@ Route::get('/addnewpost', 'WelcomeController@addnewpost');
 Route::get('/editpage/blog', 'PostController@editform');
 
 Route::get('/readpage/blog', 'PostController@readpost');
-//Route::get('/readpage/blog', 'CommentController@showcomments');
+
 Route::post('/delete/blog',
     'PostController@destroyblog'
     );

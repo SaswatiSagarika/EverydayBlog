@@ -1,3 +1,13 @@
+<?php
+/**
+    *File name: editblog.blade.
+    *File type: php.
+    *Date of  creation:20th Feb 2017.
+    *Author:mindfire solutions.
+    *Purpose: this php file  get id and edit the student record.
+    *Path:D:\PHP Projects\blog and comments\blog1\resources\veiws\pages.
+    **/
+?>
 @extends('layouts.master')
 @section('title')
     Update
@@ -8,7 +18,7 @@
     <div class="row">
         <div class="col-md-12 ">
             <div class="panel panel-default">
-                <div class="panel-heading">Read Blog </div>
+                <div class="panel-heading">Edit this Blog </div>
                 <div class="panel-body">
                    <div class="row">
                 <div class="col-sm-12" id="errorDiv">
@@ -27,7 +37,7 @@
             @foreach($records as $record)
                    <form class="myform" id="myform" action="{{ url('/editblog/record') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="Hidden" name="id" id="id" value="{{$record->getField('AuthorId')}}"/>
+                <input type="Hidden" name="id" id="id" value="{{$record->getField('BlogId')}}"/>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Subject</label>
 
